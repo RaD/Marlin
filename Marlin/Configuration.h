@@ -555,8 +555,8 @@ const bool Z_MAX_ENDSTOP_INVERTING = true; // set to true to invert the logic of
 #endif
 
 #if defined(REPRAPWORLD_KEYPAD)
-  #define NEWPANEL
-  #define ULTIPANEL
+  //#define NEWPANEL
+  //#define ULTIPANEL
 #endif
 #if defined(RA_CONTROL_PANEL)
  #define ULTIPANEL
