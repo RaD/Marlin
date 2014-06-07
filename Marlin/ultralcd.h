@@ -27,9 +27,11 @@
 
   #ifdef ULTIPANEL
   void lcd_buttons_update();
+  #ifndef REPRAPWORLD_KEYPAD
   extern volatile uint8_t buttons;  //the last checked buttons in a bit array.
-  #ifdef REPRAPWORLD_KEYPAD
-    extern volatile uint8_t buttons_reprapworld_keypad; // to store the keypad shift register values
+  #else
+  extern volatile uint16_t buttons;  //an extended version of the last checked buttons in a bit array.
+  extern volatile uint8_t buttons_reprapworld_keypad; // to store the keypad shift register values
   #endif
   #else
   FORCE_INLINE void lcd_buttons_update() {}
@@ -42,7 +44,7 @@
   extern int absPreheatHotendTemp;
   extern int absPreheatHPBTemp;
   extern int absPreheatFanSpeed;
-    
+
   void lcd_buzz(long duration,uint16_t freq);
   bool lcd_clicked();
 
@@ -81,7 +83,7 @@
     #define B_ST (1<<BL_ST)
     #define EN_B (1<<BLEN_B)
     #define EN_A (1<<BLEN_A)
-    
+
     #define LCD_CLICKED ((buttons&B_MI)||(buttons&B_ST))
   #endif//NEWPANEL
 
@@ -93,9 +95,9 @@
   FORCE_INLINE void lcd_reset_alert_level() {}
   FORCE_INLINE void lcd_buzz(long duration,uint16_t freq) {}
 
-  #define LCD_MESSAGEPGM(x) 
-  #define LCD_ALERTMESSAGEPGM(x) 
-#endif 
+  #define LCD_MESSAGEPGM(x)
+  #define LCD_ALERTMESSAGEPGM(x)
+#endif
 
 char *itostr2(const uint8_t &x);
 char *itostr31(const int &xx);
